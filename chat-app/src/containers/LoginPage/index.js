@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { signin } from '../../actions/auth.actions';
 import Card from '../../components/Card';
 import Layout from '../../components/Layout';
@@ -15,21 +16,26 @@ const LoginPage = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
+    const auth = useSelector(state => state.auth);
 
     const userLogin = (e) => {
         e.preventDefault();
 
-        if(email === ""){
+        if (email === "") {
             alert("Email is required");
             return;
         }
-        if(password === ""){
+        if (password === "") {
             alert("Password is required");
             return;
         }
+
+        dispatch(signin({ email, password }));
     }
 
-    dispatch(signin({ email, password }));
+    if (auth.authenticated) {
+        return <Redirect to={`/`} />
+    }
 
     return (
         <Layout>
