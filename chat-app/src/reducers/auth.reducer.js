@@ -9,7 +9,7 @@ const initState = {
     error: null
 }
 
-export default (state = initState, action) => {
+export default (state = initState, action) => { // eslint-disable-line no-use-before-define
     console.log(action);
 
     switch (action.type) {
@@ -48,6 +48,8 @@ export default (state = initState, action) => {
                 ...state,
                 error: action.payload.error
             }
+            break;
+        default:
             break;
 
     }
