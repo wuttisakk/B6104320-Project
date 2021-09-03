@@ -1,4 +1,4 @@
-import { authConstants } from "../actions/constants";
+import { authConstanst } from "../actions/constants"
 
 const initState = {
     firstName: '',
@@ -10,17 +10,18 @@ const initState = {
 }
 
 export default (state = initState, action) => { // eslint-disable-line no-use-before-define
+
     console.log(action);
 
     switch (action.type) {
 
-        case `${authConstants.USER_LOGIN}_REQUEST`:
+        case `${authConstanst.USER_LOGIN}_REQUEST`:
             state = {
                 ...state,
                 authenticating: true
             }
             break;
-        case `${authConstants.USER_LOGIN}_SUCCESS`:
+        case `${authConstanst.USER_LOGIN}_SUCCESS`:
             state = {
                 ...state,
                 ...action.payload.user,
@@ -28,7 +29,7 @@ export default (state = initState, action) => { // eslint-disable-line no-use-be
                 authenticating: false
             }
             break;
-        case `${authConstants.USER_LOGIN}_FAILURE`:
+        case `${authConstanst.USER_LOGIN}_FAILURE`:
             state = {
                 ...state,
                 authenticated: false,
@@ -36,14 +37,14 @@ export default (state = initState, action) => { // eslint-disable-line no-use-be
                 error: action.payload.error
             }
             break;
-        case `${authConstants.USER_LOGOUT}_REQUEST`:
+        case `${authConstanst.USER_LOGOUT}_REQUEST`:
             break;
-        case `${authConstants.USER_LOGOUT}_SUCCESS`:
+        case `${authConstanst.USER_LOGOUT}_SUCCESS`:
             state = {
                 ...initState
             }
             break;
-        case `${authConstants.USER_LOGOUT}_FAILURE`:
+        case `${authConstanst.USER_LOGOUT}_FAILURE`:
             state = {
                 ...state,
                 error: action.payload.error

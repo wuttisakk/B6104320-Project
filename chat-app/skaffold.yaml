@@ -4,7 +4,7 @@ metadata:
   name: chat-app
 build:
   artifacts:
-  - image: skaffold-create-react-app
+  - image: skaffold-chat-app
     sync:
       infer:
       - '**/*.js'
@@ -19,5 +19,5 @@ deploy:
     - k8s/deployment.yaml
 portForward:
 - resourceType: deployment
-  resourceName: create-react-app
+  resourceName: chat-app
   port: 3000

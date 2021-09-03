@@ -4,7 +4,7 @@
 }
 
 body{
-  font-family: 'Sarabun', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 ul{
@@ -14,4 +14,8 @@ ul{
 
 ul li{
   list-style: none;
+}
+
+a{
+  text-decoration: none;
 }

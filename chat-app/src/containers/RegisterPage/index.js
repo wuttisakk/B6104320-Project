@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import Card from '../../components/Card';
 import Layout from '../../components/Layout';
+import Card from '../../components/UI/Card';
 import { signup } from '../../actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 /**
 * @author
@@ -11,73 +12,83 @@ import { useDispatch } from 'react-redux';
 
 const RegisterPage = (props) => {
 
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const dispatch = useDispatch()
 
-    const registerUser = (e) => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth);
 
-        e.preventDefault();
 
-        const user = {
-            firstName, lastName, email, password
-        }
+  const registerUser = (e) => {
+    
+    e.preventDefault();
 
-        dispatch(signup(user))
+    const user = {
+      firstName, lastName, email, password
     }
+    
+    dispatch(signup(user))
+  }
 
-    return (
-        <Layout>
-            <div className="registerContainer">
-                <Card>
-                    <form onSubmit={registerUser}>
 
-                        <h3>Sign up</h3>
+  if(auth.authenticated){
+    return <Redirect to={`/`} />
+  }
 
-                        <input
-                            name="fistName"
-                            type="text"
-                            value={firstName}
-                            onChange={(e) => setFirstName(e.target.value)}
-                            placeholder="First Name"
-                        />
+  return(
+    <Layout>
+      <div className="registerContainer">
+        <Card>
+          <form onSubmit={registerUser}>
 
-                        <input
-                            name="lastName"
-                            type="text"
-                            value={lastName}
-                            onChange={(e) => setLastName(e.target.value)}
-                            placeholder="Last Name"
-                        />
+            <h3>Sign up</h3>
 
-                        <input
-                            name="email"
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Email"
-                        />
+          <input 
+              name="firstName"
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              placeholder="First Name"
+            />
 
-                        <input
-                            name="password"
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Password"
-                        />
+            <input 
+              name="lastName"
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              placeholder="Last Name"
+            />
 
-                        <div>
-                            <button>Sign up</button>
-                        </div>
+            <input 
+              name="email"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+            />
 
-                    </form>
-                </Card>
+            <input 
+              name="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+            />
+
+            <div>
+              <button>Sign up</button>
             </div>
-        </Layout>
 
-    )
-}
+
+
+          </form>
+        </Card>
+      </div>
+    </Layout>
+   )
+
+ }
 
 export default RegisterPage
