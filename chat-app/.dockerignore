@@ -1,7 +1,0 @@
-.git
-.idea
-node_modules
-**/*.swp
-**/*.tsx~
-**/*.swn
-**/*.swo
