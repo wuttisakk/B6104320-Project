@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import makeToast from "../Toaster";
-import Layout from "./components/layout";
+import Layout from "../components/layout";
 
 const RegisterPage = (props) => {
   const nameRef = React.createRef();
@@ -24,7 +24,6 @@ const RegisterPage = (props) => {
         props.history.push("/login");
       })
       .catch((err) => {
-        // console.log(err);
         if (
           err &&
           err.response &&

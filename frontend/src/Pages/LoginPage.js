@@ -2,7 +2,7 @@ import React from "react";
 import makeToast from "../Toaster";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
-import Layout from "./components/layout";
+import Layout from "../components/layout";
 
 
 const LoginPage = (props) => {
@@ -25,7 +25,6 @@ const LoginPage = (props) => {
         props.setupSocket();
       })
       .catch((err) => {
-        // console.log(err);
         if (
           err &&
           err.response &&

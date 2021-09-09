@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import Layout from "./components/layout";
+import Layout from "../components/layout";
 
 const ChatroomPage = ({ match, socket }) => {
   const chatroomId = match.params.id;
