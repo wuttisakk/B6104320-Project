@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: chatroom-backend
+spec:
+  type: ClusterIP
+  selector:
+    app: chatroom-backend
+  ports:
+  - port: 8000
+    targetPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chatroom-backend
+spec:
+  selector:
+    matchLabels:
+      app: chatroom-backend
+  template:
+    metadata:
+      labels:
+        app: chatroom-backend
+    spec:
+      containers:
+      - name: chatroom-backend
+        image: skaffold-chatroom-backend
+        ports:
+        - containerPort: 8000

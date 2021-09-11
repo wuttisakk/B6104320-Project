@@ -27,7 +27,7 @@ const Header = (props) => {
 
       </div>
       <div style={{ margin: '20px 0', color: '#fff', fontWeight: 'bold' }}>
-        
+  
       </div>
 
       <Link to={'/'} className="menu" onClick={() => {

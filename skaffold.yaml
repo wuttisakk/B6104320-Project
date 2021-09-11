@@ -1,0 +1,25 @@
+apiVersion: skaffold/v2beta22
+kind: Config
+metadata:
+  name: b--project
+build:
+  artifacts:
+  - image: skaffold-chatroom-backend
+    context: backend
+    sync:
+      infer:
+      - '**/*'
+    docker:
+      dockerfile: Dockerfile
+  - image: skaffold-chatroom-frontend
+    context: frontend
+    sync:
+      infer:
+      - '**/*'
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - k8s/chatroom-backend.yaml
+    - k8s/chatroom-frontend.yaml
