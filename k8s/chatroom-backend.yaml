@@ -3,12 +3,13 @@ kind: Service
 metadata:
   name: chatroom-backend
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: chatroom-backend
   ports:
   - port: 8000
     targetPort: 8000
+    nodePort: 30000
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -26,5 +27,12 @@ spec:
       containers:
       - name: chatroom-backend
         image: skaffold-chatroom-backend
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: "1"
+          requests:
+            memory: 256Mi
+            cpu: "0.2"
         ports:
         - containerPort: 8000

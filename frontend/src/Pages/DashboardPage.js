@@ -8,7 +8,7 @@ const DashboardPage = (props) => {
   const [chatrooms, setChatrooms] = React.useState([]);
   const getChatrooms = () => {
     axios
-      .get("http://localhost:8000/chatroom", {
+      .get("http://192.168.49.2:30000/chatroom", {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("CC_Token"),
         },
@@ -30,18 +30,6 @@ const DashboardPage = (props) => {
     <Layout>
     <div className="card">
       <div className="cardHeader">Chatrooms</div>
-      {/* <div className="cardBody">
-        <div className="inputGroup">
-          <label htmlFor="chatroomName">Chatroom Name</label>
-          <input
-            type="text"
-            name="chatroomName"
-            id="chatroomName"
-            placeholder="ChatterBox Nepal"
-          />
-        </div>
-      </div>
-      <button>Create Chatroom</button> */}
       <div className="chatrooms">
         {chatrooms.map((chatroom) => (
           <div key={chatroom._id} className="chatroom">
